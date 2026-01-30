@@ -1,0 +1,71 @@
+{pkgs, ...}: {
+    home.packages = with pkgs; [
+
+        # Fonts
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
+        font-awesome
+        source-han-sans
+        source-han-serif
+        nerd-fonts.fira-code
+        dconf
+
+        bibata-cursors
+        magnetic-catppuccin-gtk
+    ];
+
+
+    fonts = {
+        fontconfig = {
+            enable = true;
+            defaultFonts = {
+                serif = [
+                "Noto Serif"
+                "Source Han Serif"
+                ];
+                sansSerif = [
+                "Noto Sans"
+                "Source Han Sans"
+                ];
+            };
+        };
+    };
+
+    home.pointerCursor = {
+        name = "Bibata-Modern-Classic";
+        package = pkgs.bibata-cursors;
+    };
+
+    gtk = {
+        enable = true;
+        colorScheme = "dark";
+
+        theme.name = "Catppuccin-GTK-Dark";
+        theme.package = pkgs.magnetic-catppuccin-gtk;
+
+        cursorTheme.name = "Bibata-Modern-Classic";
+        cursorTheme.package = pkgs.pkgs.bibata-cursors;
+
+        iconTheme.name = "Papirus-Dark";
+        iconTheme.package = pkgs.papirus-icon-theme;
+    };
+
+
+    # home.file.".config/gtk-3.0/settings.ini".text = ''
+    #     [Settings]
+    #     gtk-theme-name=Catppuccin-GTK-Dark
+    #     gtk-icon-theme-name=Papirus-Dark
+    #     gtk-cursor-theme-name=Bibata-Modern-Classic
+    #     gtk-font-name=Sans 10
+    #     gtk-application-prefer-dark-theme=1
+    # '';
+    #
+    # home.file.".config/gtk-4.0/settings.ini".text = ''
+    #     [Settings]
+    #     gtk-theme-name=Catppuccin-GTK-Dark
+    #     gtk-icon-theme-name=Papirus-Dark
+    #     gtk-cursor-theme-name=Bibata-Modern-Classic
+    #     gtk-application-prefer-dark-theme=1
+    # '';
+}
