@@ -6,10 +6,29 @@
         zsh.eza.enable = lib.mkEnableOption "Enable Eza";
         zsh.tmux.enable = lib.mkEnableOption "Enable Tmux";
         zsh.zoxide.enable = lib.mkEnableOption "Enable Zoxide";
+        gpg.enable = lib.mkEnableOption "Enable GPG";
     };
 
     config = let
         cfg = config.zsh;
+
+        gpg = lib.mkIf config.gpg.enable {
+            programs.gpg = {
+                enable = true;
+                homedir = "${config.xdg.dataHome}/gnupg";
+                settings = {
+                    use-agent = true;
+                };
+            };
+
+            services.gpg-agent = {
+                enable = true;
+                defaultCacheTtl = 1800;
+                enableSshSupport = true;
+                enableExtraSocket = true;
+                pinentry.package = pkgs.pinentry-curses;
+            };
+        };
 
         starship = lib.mkIf cfg.starship.enable {
             programs.starship.enable = true;
@@ -97,5 +116,5 @@
             ];
         };
 
-    in lib.mkMerge [ zsh starship eza zoxide tmux direnv ];
+    in lib.mkMerge [ gpg zsh starship eza zoxide tmux direnv ];
 }

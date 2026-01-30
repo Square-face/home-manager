@@ -61,9 +61,6 @@
 
     # Home Manager modules to include (these should be proper HM modules)
     imports = [
-        modules/shell/gpg.nix
-        modules/shell/xdg.nix
-
         modules/dev/git.nix
 
         modules/ui/gtk.nix
@@ -76,6 +73,7 @@
     zsh.direnv.enable = true;
     zsh.starship.enable = true;
     zsh.zoxide.enable = true;
+    gpg.enable = true;
 
     # Optional: Set Home Manager state version (prevents breakage on updates)
     home.stateVersion = "24.11";

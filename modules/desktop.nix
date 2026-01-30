@@ -6,7 +6,6 @@
         pkgs.iio-niri
         pkgs.swww
         pkgs.kanshi
-    	pkgs.ewwii
         pkgs.brightnessctl
         pkgs.wl-clipboard-rs
     ];
@@ -24,23 +23,6 @@
         Service = {
             Type = "simple";
             ExecStart = "${pkgs.kanshi}/bin/kanshi";
-            Restart = "on-failure";
-        };
-    };
-
-    systemd.user.services.ewwii = {
-    	Unit = {
-            Description = "Ewwii daemon Service";
-            Requisite = [ "graphical-session.target" ];
-            PartOf = [ "graphical-session.target" ];
-            After = [ "graphical-session.target" ];
-        };
-        Install = {
-            WantedBy = [ "niri.service" ];
-        };
-        Service = {
-            Type = "simple";
-            ExecStart = "${pkgs.ewwii}/bin/ewwii daemon --no-daemonize";
             Restart = "on-failure";
         };
     };
@@ -65,9 +47,9 @@
     systemd.user.services.iio-niri = {
     	Unit = {
             Description = "IIO-Niri";
-            BindsTo = [ "niri.service" ];
-            PartOf = [ "niri.service" ];
-            After = [ "niri.service" ];
+            Requisite = [ "graphical-session.target" ];
+            PartOf = [ "graphical-session.target" ];
+            After = [ "graphical-session.target" ];
         };
         Install = {
             WantedBy = [ "niri.service" ];
@@ -107,11 +89,6 @@
         effect-vignette=0.5:0.5
     '';
 
-    xdg.configFile."niri" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${symlinkRoot}/niri";
-        recursive = true;
-    };
-
     services.swayidle = let
         lock = "${pkgs.swaylock-effects}/bin/swaylock --daemonize";
     in {
@@ -135,5 +112,43 @@
                 command = lock;
             }
         ];
+    };
+
+    xdg.configFile."niri" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${symlinkRoot}/niri";
+        recursive = true;
+    };
+
+    xdg = {
+        enable = true;
+        mimeApps.enable = true;
+        mimeApps.defaultApplications = {
+            "application/pdf" = [ "org.gnome.Evince.desktop" ];
+            "x-scheme-handler/discord" = [ "Vesktop.desktop" ];
+        };
+        portal = {
+            enable = true;
+            config.niri.default = [
+                "gnome"
+                "gtk"
+                "wlr"
+            ];
+            config.niri = {
+                "org.freedesktop.impl.portal.ScreenCast" = [
+                    "gnome"
+                ];
+                "org.freedesktop.impl.portal.Screenshot" = [
+                    "gtk"
+                ];
+                "org.freedesktop.impl.portal.Inhibit" = [
+                    "gtk"
+                ];
+            };
+            extraPortals = with pkgs; [
+                xdg-desktop-portal-wlr
+                xdg-desktop-portal-gtk
+                xdg-desktop-portal-gnome
+            ];
+        };
     };
 }
