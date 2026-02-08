@@ -67,7 +67,11 @@
         modules/default.nix
     ];
 
+    alacritty.enable = true;
+
     zsh.enable = true;
+    zsh.fzf.enable = true;
+    zsh.highlighting.enable = true;
     zsh.eza.enable = true;
     zsh.tmux.enable = true;
     zsh.direnv.enable = true;

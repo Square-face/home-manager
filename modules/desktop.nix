@@ -1,4 +1,19 @@
-{pkgs, ewwii, config, symlinkRoot, ...}: {
+{pkgs, config, symlinkRoot, quickshell, ...}: let
+    inherit (config.lib.file) mkOutOfStoreSymlink;
+
+    toSrcFile = name: "${symlinkRoot}/${name}";
+    link = name: mkOutOfStoreSymlink (toSrcFile name);
+
+    linkFile = name: {
+        ${name}.source = link name;
+    };
+    linkDir = name: {
+        ${name} = {
+            source = link name;
+            recursive = true;
+        };
+    };
+in {
     home.packages = [
         pkgs.niri
         pkgs.xwayland-satellite
@@ -9,6 +24,11 @@
         pkgs.brightnessctl
         pkgs.wl-clipboard-rs
     ];
+
+    programs.quickshell.enable = true;
+    programs.quickshell.package = quickshell;
+    qt.enable = true;
+    xdg.configFile = (linkDir "quickshell") // (linkDir "niri");
 
     systemd.user.services.kanshi = {
     	Unit = {
@@ -112,11 +132,6 @@
                 command = lock;
             }
         ];
-    };
-
-    xdg.configFile."niri" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${symlinkRoot}/niri";
-        recursive = true;
     };
 
     xdg = {

@@ -6,6 +6,8 @@
         zsh.eza.enable = lib.mkEnableOption "Enable Eza";
         zsh.tmux.enable = lib.mkEnableOption "Enable Tmux";
         zsh.zoxide.enable = lib.mkEnableOption "Enable Zoxide";
+        zsh.fzf.enable = lib.mkEnableOption "Enable FzF";
+        zsh.highlighting.enable = lib.mkEnableOption "Enable Syntax Highlighting";
         gpg.enable = lib.mkEnableOption "Enable GPG";
     };
 
@@ -46,7 +48,7 @@
         eza = lib.mkIf cfg.eza.enable {
             programs.eza = {
                 enable = true;
-                icons = "auto";
+                icons = "never";
                 git = true;
                 enableZshIntegration = true;
                 extraOptions = [
@@ -97,7 +99,7 @@
                     tmpcd = "cd $(mktemp -d)";
                 };
                 initContent = ''
-                    nixz() { nix-shell -p "$@" --run zsh }
+                    nixz() { nix-shell -p "$@" --run 'env SHELL=zsh zsh' }
                 '';
                 dotDir = "${config.xdg.configHome}/zsh";
                 historySubstringSearch.enable = true;
@@ -105,7 +107,16 @@
                     path = "${config.xdg.dataHome}/zsh/zsh_history";
                     ignoreAllDups = true;
                 };
+                syntaxHighlighting = lib.mkIf cfg.highlighting.enable {
+                    enable = true;
+                    highlighters = ["brackets"];
+                };
             };
+        };
+
+        fzf = lib.mkIf cfg.fzf.enable {
+            programs.fzf.enable = true;
+            programs.fzf.enableZshIntegration = true;
         };
 
         zoxide = lib.mkIf cfg.zoxide.enable {
@@ -116,5 +127,5 @@
             ];
         };
 
-    in lib.mkMerge [ gpg zsh starship eza zoxide tmux direnv ];
+    in lib.mkMerge [ gpg zsh starship eza zoxide tmux direnv fzf ];
 }

@@ -7,17 +7,22 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-	ewwii.url = "github:Ewwii-sh/ewwii";
+        quickshell = {
+            url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = {nixpkgs, home-manager, ewwii, ...}: {
+    outputs = {nixpkgs, home-manager, quickshell, ...}: {
         homeConfigurations = {
             "sq8" = home-manager.lib.homeManagerConfiguration {
                 # System is very important!
-                pkgs = import nixpkgs { system = "x86_64-linux"; overlays = [ ewwii.overlays.default ]; };
-		extraSpecialArgs = {
-		  symlinkRoot = "${builtins.toString ./.}/symlinks/";
-		};
+                pkgs = import nixpkgs { system = "x86_64-linux"; overlays = []; };
+
+                extraSpecialArgs = {
+                    symlinkRoot = "/home/sq8/.config/home-manager/symlinks/";
+                    quickshell = quickshell.packages."x86_64-linux".default;
+		        };
 
                 modules = [ ./home.nix ]; # Defined later
             };

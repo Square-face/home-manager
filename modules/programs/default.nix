@@ -5,6 +5,7 @@
     ];
 
     imports = [
+        ./alacritty.nix
         ./firefox.nix
         ./neovim.nix
         ./rofi.nix

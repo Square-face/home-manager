@@ -5,7 +5,7 @@
         in {
         enable = true;
         package = pkgs.rofi;
-        terminal = "${pkgs.kitty}/bin/kitty";
+        terminal = "${pkgs.alacritty}/bin/alacritty";
 
         extraConfig = {
             show-icons = mkLiteral "true";

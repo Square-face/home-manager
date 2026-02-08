@@ -1,0 +1,41 @@
+import Quickshell
+
+Scope {
+    Variants {
+        model: Quickshell.screens
+
+        PanelWindow {
+            required property var modelData
+            screen: modelData
+
+            color: "transparent"
+
+            anchors {
+                top: true
+                left: true
+                right: true
+            }
+
+            implicitHeight: 18
+
+            Island {
+                anchors.top: parent.top
+                anchors.left: parent.left
+                ClockWidget { }
+            }
+
+            Island {
+                anchors.top: parent.top
+                anchors.horizontalCenter: parent.horizontalCenter
+                ClockWidget { }
+            }
+
+            Island {
+                anchors.top: parent.top
+                anchors.right: parent.right
+                ClockWidget { }
+                BatteryWidget {}
+            }
+        }
+    }
+}

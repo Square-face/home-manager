@@ -23,6 +23,7 @@ require("lazy").setup({
   },
   install = { colorscheme = { "catppuccin-mocha" } },
   checker = { enabled = true },
+  lockfile = vim.fn.stdpath("cache") .. "/lazy-lock.json";
   ui = {
       border = "rounded",
       title = "Plugins"
