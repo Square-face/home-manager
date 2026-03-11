@@ -1,46 +1,19 @@
-{ pkgs, config, lib, ... }: {
+{ pkgs, config, lib, ... }: let 
+  inherit (config.lib.file) mkOutOfStoreSymlink;
+
+  symlinkRoot = "/home/sq8/.home/symlinks/";
+  toSrcFile = name: "${symlinkRoot}${name}";
+  link = name: mkOutOfStoreSymlink (toSrcFile name);
+
+  linkFile = name: { "${name}".source = link name; };
+  linkDir  = name: { "${name}" = { source = link name; recursive = true; }; };
+in {
+  _module.args = {
+    inherit link linkFile linkDir symlinkRoot;
+  };
     home.username = "sq8";
     home.homeDirectory = "/home/sq8";
     programs.home-manager.enable = true;
-
-    # Packages installed for the user
-    home.packages = with pkgs; [
-        usbutils
-        xdg-utils
-
-        fastfetch
-        btop
-        dust
-
-        playerctl
-        spotifywm
-
-        nemo-with-extensions
-
-        libreoffice
-        evince
-        rnote
-
-        vesktop
-        thunderbird
-        element-desktop
-        orca-slicer
-
-        bitwarden-desktop
-
-        # Utils
-        fd
-        file
-        ripgrep
-
-        wget
-        nmap
-        dig
-
-        libqalculate
-        feh
-        mpv
-    ];
 
     home.sessionVariables = {
         RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
@@ -59,7 +32,6 @@
         };
     };
 
-    # Home Manager modules to include (these should be proper HM modules)
     imports = [
         modules/dev/git.nix
 
@@ -81,8 +53,4 @@
 
     # Optional: Set Home Manager state version (prevents breakage on updates)
     home.stateVersion = "24.11";
-
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-        "spotify"
-    ];
 }

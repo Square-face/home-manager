@@ -1,6 +1,6 @@
 {...}: {
     imports = [
-        ./desktop.nix
+        ./desktop/default.nix
         ./zsh.nix
         ./programs/default.nix
     ];

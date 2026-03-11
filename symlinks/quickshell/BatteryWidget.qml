@@ -1,5 +1,5 @@
 import QtQuick
-import Quickshell.services.UPower
+import Quickshell.Services.UPower
 
 Repeater {
     model: Battery.devices
