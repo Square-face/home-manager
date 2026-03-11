@@ -27,7 +27,7 @@
 
             gpg.program = "${pkgs.gnupg}/bin/gpg";
             init.defaultBranch = "main";
-            user.signingKey = "59BC 481E 817E 00C2 3930  D7AA 8087 49C2 CFE5 F9E8";
+            user.signingKey = "B192 EEAF 3E95 8C66 FB60  C762 8B1C 9A93 95F8 DE48";
             user.name = "Linus Michelsson";
             user.email = "linus@sq8.dev";
         };
