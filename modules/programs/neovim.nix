@@ -1,12 +1,11 @@
-{ pkgs, config, symlinkRoot, ... }: {
+{ pkgs, config, linkDir, ... }: {
     programs.neovim = {
         enable = true;
         viAlias = true;
         vimAlias = true;
         defaultEditor = true;
     };
-    xdg.configFile."nvim" = {
-    	source = config.lib.file.mkOutOfStoreSymlink "${symlinkRoot}/nvim";
-        recursive = true;
-    };
+
+    xdg.configFile.nvim.source = ../../symlinks/nvim;
+    xdg.configFile.nvim.recursive = true;
 }

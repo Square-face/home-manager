@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   xdg = {
+    configHome = "/home/sq8/.config";
     enable = true;
     mimeApps.enable = true;
     mimeApps.defaultApplications = {

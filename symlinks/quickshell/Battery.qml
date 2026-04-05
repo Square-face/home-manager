@@ -6,5 +6,6 @@ import Quickshell.Services.UPower
 Singleton {
     id: root
 
-    property var batteries: UPower.values
+    property var devices: UPower.devices
+    property var primary: UPower.displayDevice
 }

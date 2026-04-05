@@ -28,7 +28,7 @@
             user = "root";
             port = 22;
         };
-        "sitbix" = {
+        "shitbix" = {
             hostname = "10.2.1.1";
             user = "root";
             port = 22;
