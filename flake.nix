@@ -23,6 +23,11 @@
       modules = [ ./modules/default.nix ./flappy.nix ];
     };
 
+    homeConfigurations."sq8@shrexbox" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs extraSpecialArgs;
+      modules = [ ./modules/default.nix ./shrexbox.nix ];
+    };
+
     homeConfigurations."sq8@frank" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs extraSpecialArgs;
       modules = [ ./modules/default.nix ./frank.nix ];
