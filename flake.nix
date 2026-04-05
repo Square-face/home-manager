@@ -20,13 +20,8 @@
       extraSpecialArgs = { inherit quickshell awww; };
 
       modules = [
+      ./modules/default.nix
 
-    modules/default.nix
-
-    modules/programs/default.nix
-
-    modules/graphical/default.nix
-    modules/graphical/desktop/default.nix
       ./flappy.nix 
       ];
     };
