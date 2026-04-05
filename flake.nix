@@ -14,16 +14,18 @@
     awww.inputs.nixpkgs.follows = "nixpkgs";
   };
   
-  outputs = inputs@{nixpkgs, home-manager, quickshell, awww, ...}: {
+  outputs = inputs@{nixpkgs, home-manager, quickshell, awww, ...}: let 
+    pkgs = import nixpkgs { system = "x86_64-linux"; overlays = []; };
+    extraSpecialArgs = { inherit quickshell awww; };
+  in {
     homeConfigurations."sq8@flappy" = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs { system = "x86_64-linux"; overlays = []; };
-      extraSpecialArgs = { inherit quickshell awww; };
+      inherit pkgs extraSpecialArgs;
+      modules = [ ./modules/default.nix ./flappy.nix ];
+    };
 
-      modules = [
-      ./modules/default.nix
-
-      ./flappy.nix 
-      ];
+    homeConfigurations."sq8@frank" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs extraSpecialArgs;
+      modules = [ ./modules/default.nix ./frank.nix ];
     };
   };
 }
