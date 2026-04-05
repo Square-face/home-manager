@@ -2,9 +2,15 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = '''
-$directory$nixshell
+($username@$hostname:)$directory$git_branch
 $character
 '''
 
 follow_symlinks = false
 scan_timeout = 10
+
+[hostname]
+format = '[$hostname]($style)'
+
+[username]
+format = '[$user]($style)'
