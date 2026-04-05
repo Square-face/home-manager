@@ -39,11 +39,6 @@ in {
 
   udiskie.enable = true;
 
-
-  programs.lutris.enable = true;
-  programs.lutris.steamPackage = pkgs.steam;
-  programs.lutris.winePackages = [ pkgs.wineWow64Packages.full ];
-
   # Optional: Set Home Manager state version (prevents breakage on updates)
   home.stateVersion = "24.11";
 }
