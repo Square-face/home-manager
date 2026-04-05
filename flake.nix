@@ -20,17 +20,17 @@
   in {
     homeConfigurations."sq8@flappy" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs extraSpecialArgs;
-      modules = [ ./modules/default.nix ./flappy.nix ];
+      modules = [ ./modules/default.nix ./hosts/flappy.nix ];
     };
 
     homeConfigurations."sq8@shrexbox" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs extraSpecialArgs;
-      modules = [ ./modules/default.nix ./shrexbox.nix ];
+      modules = [ ./modules/default.nix ./hosts/shrexbox.nix ];
     };
 
     homeConfigurations."sq8@frank" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs extraSpecialArgs;
-      modules = [ ./modules/default.nix ./frank.nix ];
+      modules = [ ./modules/default.nix ./hosts/frank.nix ];
     };
   };
 }
