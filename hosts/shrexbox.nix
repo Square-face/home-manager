@@ -34,7 +34,6 @@ in {
   zsh.tmux.enable = true;
   zsh.direnv.enable = true;
   zsh.starship.enable = true;
-  zsh.zoxide.enable = true;
   gpg.enable = true;
 
   udiskie.enable = true;

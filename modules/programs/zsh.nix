@@ -5,7 +5,6 @@
         zsh.direnv.enable = lib.mkEnableOption "Enable Direnv";
         zsh.eza.enable = lib.mkEnableOption "Enable Eza";
         zsh.tmux.enable = lib.mkEnableOption "Enable Tmux";
-        zsh.zoxide.enable = lib.mkEnableOption "Enable Zoxide";
         zsh.fzf.enable = lib.mkEnableOption "Enable FzF";
         zsh.highlighting.enable = lib.mkEnableOption "Enable Syntax Highlighting";
         gpg.enable = lib.mkEnableOption "Enable GPG";
@@ -119,13 +118,5 @@
             programs.fzf.enableZshIntegration = true;
         };
 
-        zoxide = lib.mkIf cfg.zoxide.enable {
-            programs.zoxide.enable = true;
-            programs.zoxide.enableZshIntegration = true;
-            programs.zoxide.options = [
-                "--cmd cd"
-            ];
-        };
-
-    in lib.mkMerge [ gpg zsh starship eza zoxide tmux direnv fzf ];
+    in lib.mkMerge [ gpg zsh starship eza tmux direnv fzf ];
 }
