@@ -24,6 +24,7 @@ in {
   };
 
   graphical.enable = true;
+  firefox.enable = true;
 
   alacritty.enable = true;
 
