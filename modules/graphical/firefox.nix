@@ -2,6 +2,7 @@
   options.firefox.enable = lib.mkEnableOption "Enable firefox";
   config = lib.mkIf (config.firefox.enable && config.graphical.enable) {
     programs.firefox.enable = true;
+    programs.firefox.configPath = "${config.xdg.configHome}/mozilla/firefox";
     programs.firefox.package = pkgs.librewolf;
     programs.firefox.policies = {
 
