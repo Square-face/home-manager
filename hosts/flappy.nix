@@ -33,7 +33,7 @@ in {
   zsh.highlighting.enable = true;
   zsh.eza.enable = true;
   zsh.tmux.enable = true;
-  zsh.direnv.enable = true;
+  zsh.direnv.enable = false;
   zsh.starship.enable = true;
   gpg.enable = true;
 

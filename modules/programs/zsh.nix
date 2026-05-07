@@ -88,16 +88,17 @@
             programs.zsh = {
                 enable = true;
                 shellAliases = {
-                    v = "${pkgs.neovim}/bin/nvim";
+                  v = "${pkgs.neovim}/bin/nvim";
+                  zdev = "nix develop --command zsh";
 
-                    g = "git";
+                  g = "git";
 
-                    wget = "wget --hsts-file=\"\$XDG_CACHE_HOME/wget-hsts\"";
+                  wget = "wget --hsts-file=\"\$XDG_CACHE_HOME/wget-hsts\"";
 
-                    tmpcd = "cd $(mktemp -d)";
+                  tmpcd = "cd $(mktemp -d)";
                 };
                 initContent = ''
-                    nixz() { nix-shell -p "$@" --run 'env SHELL=zsh zsh' }
+                  nixz() { nix-shell -p "$@" --run 'env SHELL=zsh zsh' }
                 '';
                 dotDir = "${config.xdg.configHome}/zsh";
                 historySubstringSearch.enable = true;
