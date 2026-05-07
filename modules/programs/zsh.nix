@@ -87,6 +87,8 @@
         zsh = lib.mkIf cfg.enable {
             programs.zsh = {
                 enable = true;
+                enableVteIntegration = true;
+                defaultKeymap = "emacs";
                 shellAliases = {
                   v = "${pkgs.neovim}/bin/nvim";
                   zdev = "nix develop --command zsh";
@@ -98,13 +100,14 @@
                   tmpcd = "cd $(mktemp -d)";
                 };
                 initContent = ''
+                  bindkey "^[[1;3C" forward-word
+                  bindkey "^[[1;3D" backward-word
                   nixz() { nix-shell -p "$@" --run 'env SHELL=zsh zsh' }
                 '';
                 dotDir = "${config.xdg.configHome}/zsh";
                 historySubstringSearch.enable = true;
                 history = {
                     path = "${config.xdg.dataHome}/zsh/zsh_history";
-                    ignoreAllDups = true;
                 };
                 syntaxHighlighting = lib.mkIf cfg.highlighting.enable {
                     enable = true;
