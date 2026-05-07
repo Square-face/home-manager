@@ -21,6 +21,7 @@
         cinny-desktop
 
         jellyfin-desktop
+        finamp
         orca-slicer
 
         thunderbird
