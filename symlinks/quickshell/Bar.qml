@@ -32,8 +32,16 @@ Scope {
 
             Island {
                 anchors.top: parent.top
+                anchors.right: rightmost.left
+                NetworkWidget {}
+            }
+
+            Island {
+                id: rightmost
+                anchors.top: parent.top
                 anchors.right: parent.right
-                ClockWidget { }
+                SpeakerWidget {}
+                MicrophoneWidget {}
                 BatteryWidget {}
             }
         }
