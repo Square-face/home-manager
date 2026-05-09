@@ -2,17 +2,17 @@ import QtQuick
 import Quickshell.Services.Pipewire
 
 Rectangle {
-    width: 14
+    width: 11
     height: parent.height
     color: "transparent"
 
+    property bool muted: Audio.primary_source?.audio.muted
+
     Text {
         anchors.centerIn: parent
-        color: "white"
+        color: muted ? "#AAAAAA" : "white"
         horizontalAlignment: Text.AlignLeft
 
-        property bool muted: Audio.primary_source?.audio.muted ?? false
-        width: (muted) ? 15 : 10 
 
         text: {
             if (muted) {return ""}

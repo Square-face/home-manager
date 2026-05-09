@@ -7,11 +7,13 @@ Rectangle {
     height: parent.height
     visible: Battery.primary.isLaptopBattery
     color: "transparent"
+    border.color: "red"
 
     Text {
         id: indicator
         color: "white"
         font.pixelSize: 14
+        // rotation: 90
 
         transform: Rotation { origin.x: 6; origin.y: 11; angle: 90 }
 

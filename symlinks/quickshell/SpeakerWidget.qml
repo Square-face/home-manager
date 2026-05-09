@@ -1,8 +1,12 @@
 import QtQuick
 import QtQuick.Controls
 import Quickshell
+<<<<<<< HEAD
 import Quickshell.Widgets
+=======
+>>>>>>> refs/remotes/origin/main
 import Quickshell.Services.Pipewire
+import QtQuick.Effects
 
 Item {
     id: root
