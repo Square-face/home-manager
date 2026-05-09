@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Services.Pipewire
 
 Scope {
     Variants {
@@ -40,7 +41,7 @@ Scope {
                 id: rightmost
                 anchors.top: parent.top
                 anchors.right: parent.right
-                SpeakerWidget {}
+                SpeakerWidget {node: Pipewire.defaultAudioSink}
                 MicrophoneWidget {}
                 BatteryWidget {}
             }

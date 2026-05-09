@@ -11,7 +11,7 @@ Rectangle {
         color: "white"
         horizontalAlignment: Text.AlignLeft
 
-        property bool muted: Audio.primary_source?.audio.muted
+        property bool muted: Audio.primary_source?.audio.muted ?? false
         width: (muted) ? 15 : 10 
 
         text: {
