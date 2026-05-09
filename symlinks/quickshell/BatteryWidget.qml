@@ -5,6 +5,7 @@ import Quickshell.Services.UPower
 Rectangle {
     width: 13
     height: parent.height
+    visible: Battery.primary.isLaptopBattery
     color: "transparent"
 
     Text {
