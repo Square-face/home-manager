@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }: let 
   inherit (config.lib.file) mkOutOfStoreSymlink;
 
-  symlinkRoot = "/home/sq8/.home/symlinks/";
+  symlinkRoot = "/home/sq8/.nix/home/symlinks/";
   toSrcFile = name: "${symlinkRoot}${name}";
   link = name: mkOutOfStoreSymlink (toSrcFile name);
 
@@ -38,11 +38,6 @@ in {
   gpg.enable = true;
 
   udiskie.enable = true;
-
-
-  programs.lutris.enable = true;
-  programs.lutris.steamPackage = pkgs.steam;
-  programs.lutris.winePackages = [ pkgs.wineWow64Packages.full ];
 
   # Optional: Set Home Manager state version (prevents breakage on updates)
   home.stateVersion = "24.11";
