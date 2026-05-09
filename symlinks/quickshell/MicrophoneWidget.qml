@@ -14,9 +14,6 @@ Rectangle {
         horizontalAlignment: Text.AlignLeft
 
 
-        text: {
-            if (muted) {return ""}
-            return ""
-        }
+        text: (muted) ? "" : ""
     }
 }

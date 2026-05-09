@@ -1,12 +1,9 @@
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Controls
 import Quickshell
-<<<<<<< HEAD
 import Quickshell.Widgets
-=======
->>>>>>> refs/remotes/origin/main
 import Quickshell.Services.Pipewire
-import QtQuick.Effects
 
 Item {
     id: root
@@ -19,7 +16,7 @@ Item {
     property real percent: node.audio.volume
     property bool muted: node.audio.muted
 
-    property bool showSlider: true
+    property bool showSlider: false
 
     Connections {
 		target: Pipewire.defaultAudioSink?.audio
@@ -45,7 +42,7 @@ Item {
         background: Item {}
         indicator: Text {
             id: indicator
-            color: "white"
+            color: (muted) ? "gray" : "white"
 
             text: {
                 if (muted) {return " "}
@@ -87,6 +84,7 @@ Item {
                         color: "#130f0e"
                         implicitHeight: 120
                         implicitWidth: 22
+
                         Rectangle {
                             id: handle
 
@@ -95,6 +93,7 @@ Item {
                             width: slider.width
                             anchors.bottom: parent.bottom
                         }
+
                         Text {
                             text: Math.round(percent * 100)
                             font.pixelSize: 11

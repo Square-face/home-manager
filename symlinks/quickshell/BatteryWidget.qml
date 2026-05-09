@@ -7,7 +7,6 @@ Rectangle {
     height: parent.height
     visible: Battery.primary.isLaptopBattery
     color: "transparent"
-    border.color: "red"
 
     Text {
         id: indicator
