@@ -42,6 +42,7 @@
             hostname = "10.2.100.1";
             user = "sq8";
             port = 22;
+            forwardAgent = true;
         };
     };
 
