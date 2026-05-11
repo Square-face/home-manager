@@ -34,6 +34,7 @@ Scope {
             Island {
                 anchors.top: parent.top
                 anchors.right: rightmost.left
+                anchors.rightMargin: 5
                 NetworkWidget {}
             }
 

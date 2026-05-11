@@ -7,14 +7,14 @@ Item {
     default property alias content: row.data
     property alias anchor: root.anchors
 
-    width: rect.width
+    implicitWidth: inner.implicitWidth
     height: 18
 
     Rectangle {
-        id: rect
+        id: inner
         color: "#111111"
         radius: 9
-        width: row.width + 18
+        implicitWidth: row.implicitWidth + (radius*2)
         height: parent.height
 
         RowLayout {
