@@ -6,7 +6,7 @@ Scope {
         model: Quickshell.screens
 
         PanelWindow {
-            required property var modelData
+            required property ShellScreen modelData
             screen: modelData
 
             color: "transparent"
