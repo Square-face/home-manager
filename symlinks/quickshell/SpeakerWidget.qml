@@ -19,18 +19,23 @@ Item {
     property bool muted: node?.audio.muted ?? false
 
     property bool showSlider: false
+    property bool hoveringSlider: false
 
     Connections {
 		target: node?.audio ?? null
 
 		function onVolumeChanged() {
 			root.showSlider = true;
-			hideTimer.restart();
+            if (!hoveringSlider) {
+                hideTimer.restart();
+            }
 		}
 
 		function onMutedChanged() {
 			root.showSlider = true;
-			hideTimer.restart();
+            if (!hoveringSlider) {
+                hideTimer.restart();
+            }
 		}
 	}
 
@@ -49,9 +54,12 @@ Item {
         background: Item {}
         indicator: Text {
             id: indicator
-            color: (muted) ? "gray" : "white"
+            color: (!muted) ? "white" : "gray"
+
+            renderType: Text.NativeRendering
 
             text: {
+                if (showSlider) {return Math.round(node.audio.volume*100) + "%"}
                 if (muted) {return " "}
                 if (percent == 0) {return "";}
                 if (percent < 0.5) {return "";}
@@ -77,7 +85,7 @@ Item {
             implicitHeight: slider.implicitHeight
 
             anchor.item: button
-            anchor.rect.x: button.width/2 - width/2
+            // anchor.rect.x: (width - indicator.contentWidth) / 2
             anchor.rect.y: button.height*1.1
 
             ClippingWrapperRectangle {
@@ -85,7 +93,6 @@ Item {
 
                 HoverHandler {
                     id: popupHover
-
                 }
 
                 Connections {
@@ -94,8 +101,10 @@ Item {
                     function onHoveredChanged() {
                         if (popupHover.hovered) {
                             hideTimer.stop();
+                            root.hoveringSlider = true;
                         } else {
-                            root.showSlider = false;
+                            root.hoveringSlider = false;
+                            hideTimer.restart();
                         }
                     }
                 }
@@ -106,9 +115,6 @@ Item {
 
                     value: node.audio.volume
                     onValueChanged: node.audio.volume = value
-
-                    stepSize: 0.05
-                    snapMode: Slider.SnapAlways
 
                     property real effectivePosition: (1 - visualPosition)
 
@@ -122,7 +128,7 @@ Item {
                         implicitWidth: 22
 
                         radius: width/4
-                        border.color: (node.audio.muted) ? "gray" : "white"
+                        border.color: "gray"
                         border.pixelAligned: false
                         border.width: 0.4
 
