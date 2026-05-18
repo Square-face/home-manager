@@ -1,5 +1,7 @@
 import Quickshell
 import Quickshell.Services.Pipewire
+import "audio" as Audio
+import "common" as Common
 
 Scope {
     Variants {
@@ -19,31 +21,35 @@ Scope {
 
             implicitHeight: 18
 
-            Island {
+            Common.Island {
                 anchors.top: parent.top
                 anchors.left: parent.left
                 ClockWidget { }
             }
 
-            Island {
+            Common.Island {
                 anchors.top: parent.top
                 anchors.horizontalCenter: parent.horizontalCenter
                 ClockWidget { }
             }
 
-            Island {
+            Common.Island {
+                id: networking
                 anchors.top: parent.top
-                anchors.right: rightmost.left
-                anchors.rightMargin: 5
+                anchors.right: audio.left
                 NetworkWidget {}
             }
 
-            Island {
-                id: rightmost
+            Audio.Island {
+                id: audio
+                anchors.top: parent.top
+                anchors.right: system.left
+            }
+
+            Common.Island {
+                id: system
                 anchors.top: parent.top
                 anchors.right: parent.right
-                SpeakerWidget {node: Pipewire.defaultAudioSink}
-                MicrophoneWidget {}
                 BatteryWidget {}
             }
         }

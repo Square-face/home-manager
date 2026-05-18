@@ -20,6 +20,7 @@ Rectangle {
 
 
         text: {
+
             if (prc < 0.075) {return "󰂎";}
             if (prc < 0.150) {return "󰁺";}
             if (prc < 0.225) {return "󰁻";}

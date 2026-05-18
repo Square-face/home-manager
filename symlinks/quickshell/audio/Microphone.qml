@@ -6,14 +6,16 @@ Rectangle {
     height: parent.height
     color: "transparent"
 
-    property bool muted: Audio.primary_source?.audio.muted
+    required property PwNode node;
+    PwObjectTracker { objects: [ node ] }
+    visible: node != null
 
     Text {
         anchors.centerIn: parent
-        color: muted ? "#AAAAAA" : "white"
+        color: node?.audio.muted ? "#AAAAAA" : "white"
         horizontalAlignment: Text.AlignLeft
 
 
-        text: (muted) ? "" : ""
+        text: (node?.audio.muted) ? "" : ""
     }
 }

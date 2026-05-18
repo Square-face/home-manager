@@ -113,7 +113,7 @@ Item {
                 Slider {
                     id: slider
 
-                    value: node.audio.volume
+                    value: node?.audio.volume
                     onValueChanged: node.audio.volume = value
 
                     property real effectivePosition: (1 - visualPosition)
@@ -135,7 +135,7 @@ Item {
                         Rectangle {
                             id: handle
 
-                            color: (node.audio.muted) ? "gray" : "white"
+                            color: (node?.audio.muted) ? "gray" : "white"
                             height: slider.height * slider.effectivePosition
                             width: slider.width
                             anchors.bottom: parent.bottom
