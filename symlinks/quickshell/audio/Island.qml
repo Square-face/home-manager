@@ -52,22 +52,30 @@ Item {
         onTriggered: if (allowClose) {collapsing.start();}
     }
 
-    implicitWidth: loader.width
-    implicitHeight: 18
+    property real normalWidth: row.implicitWidth + (inner.radius*2)
+    property real expandedWidth: 100
 
-    SequentialAnimation {
+    property real normalHeight: 18
+    property real expandedHeight: 200
+
+    implicitWidth: normalWidth
+    implicitHeight: normalHeight
+
+    ParallelAnimation {
         id: expanding
         running: false
-        PropertyAnimation { target: loader; property: "sourceComponent"; to: popup; duration: 0 }
-        PropertyAnimation { target: inner; property: "visible"; to: false; duration: 0 }
-        ParallelAnimation {
-            PropertyAnimation { target: loader; property: "width"; to: fullWidth; easing.type: Easing.InOutQuad; duration: 300 }
-            PropertyAnimation { target: inner; property: "implicitWidth"; to: fullWidth; easing.type: Easing.InOutQuad; duration: 300 }
-            PropertyAnimation { target: root; property: "implicitHeight"; to: 200; easing.type: Easing.InOutCirc; duration: 300 }
-        }
+
+        PropertyAnimation {target: loader; property: "sourceComponent"; to: popup; duration: 0; }
+        PropertyAnimation {target: inner; property: "visible"; to: false; duration: 0; }
+
+        PropertyAnimation {target: inner; property: "implicitWidth"; from: normalWidth; to: expandedWidth; duration: 150; easing.type: Easing.OutQuad}
+        PropertyAnimation {target: root; property: "implicitWidth"; from: normalWidth; to: expandedWidth; duration: 150; easing.type: Easing.OutQuad}
+
+        PropertyAnimation {target: root; property: "implicitHeight"; from: normalHeight; to: expandedHeight; duration: 150; easing.type: Easing.OutQuad}
+
         onStarted: collapsing.stop()
         onFinished: () => {
-            closeTimer.interval=1300;
+            closeTimer.interval = 1300;
             closeTimer.restart();
         }
     }
@@ -75,14 +83,16 @@ Item {
     SequentialAnimation {
         id: collapsing
         running: false
-        PropertyAnimation { target: inner; property: "visible"; to: true; duration: 0 }
-
         ParallelAnimation {
-            PropertyAnimation { target: loader; property: "width"; to: inner.implicitWidth; easing.type: Easing.InOutQuad; duration: 100 }
-            PropertyAnimation { target: root; property: "implicitHeight"; to: 18; easing.type: Easing.InOutQuad; duration: 100 }
-            PropertyAnimation { target: inner; property: "implicitWidth"; to: row.implicitWidth + (inner.radius*2); easing.type: Easing.InOutQuad; duration: 100 }
+            PropertyAnimation {target: inner; property: "visible"; to: true; duration: 0; }
+
+            PropertyAnimation {target: inner; property: "implicitWidth"; to: normalWidth; from: expandedWidth; duration: 150; easing.type: Easing.OutQuad}
+            PropertyAnimation {target: root; property: "implicitWidth"; to: normalWidth; from: expandedWidth; duration: 150; easing.type: Easing.OutQuad}
+
+            PropertyAnimation {target: root; property: "implicitHeight"; to: normalHeight; from: expandedHeight; duration: 150; easing.type: Easing.OutQuad}
         }
-        PropertyAnimation { target: loader; property: "sourceComponent"; to: null; duration: 0 }
+
+        PropertyAnimation {target: loader; property: "sourceComponent"; to: null; duration: 0; }
 
         onStarted: expanding.stop()
     }
@@ -96,7 +106,7 @@ Item {
         id: inner
         color: "#111111"
         radius: 9
-        implicitWidth: row.implicitWidth + (radius*2)
+        width: root.width
         height: root.height
 
         MouseArea {
@@ -116,13 +126,6 @@ Item {
     Component {
         id: popup
         Item {
-            Connections {
-                target: popupWindow ?? null
-                function onVisibleChanged() {
-                    if (popupWindow.visible) {return;}
-                    collapsing.start()
-                }
-            }
 
             PopupWindow {
                 id: popupWindow
@@ -130,18 +133,15 @@ Item {
                 anchor.edges: Edges.Right | Edges.Top
                 anchor.gravity: Edges.Left | Edges.Bottom
 
-                implicitWidth: loader.width
-                implicitHeight: root.height
-
-                grabFocus: false
+                implicitWidth: root.implicitWidth
+                implicitHeight: root.implicitHeight
 
                 color: "transparent"
                 visible: true
 
-
                 Rectangle {
                     color: "#111111"
-                    radius: 9
+                    radius: 15
                     anchors.fill: parent
                     MouseArea {
                         id: closeArea
