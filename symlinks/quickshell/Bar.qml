@@ -37,6 +37,7 @@ Scope {
                 id: networking
                 anchors.top: parent.top
                 anchors.right: audio.left
+                anchors.rightMargin: 2
                 NetworkWidget {}
             }
 
@@ -44,12 +45,14 @@ Scope {
                 id: audio
                 anchors.top: parent.top
                 anchors.right: system.left
+                anchors.rightMargin: 2
             }
 
             Common.Island {
                 id: system
                 anchors.top: parent.top
                 anchors.right: parent.right
+                anchors.rightMargin: 2
                 BatteryWidget {}
             }
         }

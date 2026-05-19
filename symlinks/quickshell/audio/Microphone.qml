@@ -7,14 +7,12 @@ Rectangle {
     color: "transparent"
 
     required property PwNode node;
-    PwObjectTracker { objects: [ node ] }
     visible: node != null
 
     Text {
         anchors.centerIn: parent
         color: node?.audio.muted ? "#AAAAAA" : "white"
         horizontalAlignment: Text.AlignLeft
-
 
         text: (node?.audio.muted) ? "" : ""
     }
