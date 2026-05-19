@@ -143,11 +143,6 @@ Item {
                     color: "#111111"
                     radius: 9
                     anchors.fill: parent
-                    border {
-                        color: "#505050"
-                        width: 0.5
-                        pixelAligned: false
-                    }
                     MouseArea {
                         id: closeArea
                         anchors.fill: parent
