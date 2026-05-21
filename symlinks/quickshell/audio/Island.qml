@@ -64,37 +64,34 @@ Item {
     ParallelAnimation {
         id: expanding
         running: false
-
-        PropertyAnimation {target: loader; property: "sourceComponent"; to: popup; duration: 0; }
-        PropertyAnimation {target: inner; property: "visible"; to: false; duration: 0; }
-
-        PropertyAnimation {target: inner; property: "implicitWidth"; from: normalWidth; to: expandedWidth; duration: 150; easing.type: Easing.OutQuad}
-        PropertyAnimation {target: root; property: "implicitWidth"; from: normalWidth; to: expandedWidth; duration: 150; easing.type: Easing.OutQuad}
-
-        PropertyAnimation {target: root; property: "implicitHeight"; from: normalHeight; to: expandedHeight; duration: 150; easing.type: Easing.OutQuad}
-
         onStarted: collapsing.stop()
         onFinished: () => {
             closeTimer.interval = 1300;
             closeTimer.restart();
         }
+
+        PropertyAnimation {target: loader; property: "sourceComponent"; to: popup; duration: 0; }
+        PropertyAnimation {target: inner; property: "visible"; to: false; duration: 0; }
+
+        PropertyAnimation {target: inner; property: "implicitWidth"; from: normalWidth; to: expandedWidth; duration: 750; easing.type: Easing.OutBack}
+        PropertyAnimation {target: root; property: "implicitWidth"; from: normalWidth; to: expandedWidth; duration: 750; easing.type: Easing.OutBack}
+
+        PropertyAnimation {target: root; property: "implicitHeight"; from: normalHeight; to: expandedHeight; duration: 750; easing.type: Easing.OutBack}
     }
 
     SequentialAnimation {
         id: collapsing
         running: false
-        ParallelAnimation {
-            PropertyAnimation {target: inner; property: "visible"; to: true; duration: 0; }
-
-            PropertyAnimation {target: inner; property: "implicitWidth"; to: normalWidth; from: expandedWidth; duration: 150; easing.type: Easing.OutQuad}
-            PropertyAnimation {target: root; property: "implicitWidth"; to: normalWidth; from: expandedWidth; duration: 150; easing.type: Easing.OutQuad}
-
-            PropertyAnimation {target: root; property: "implicitHeight"; to: normalHeight; from: expandedHeight; duration: 150; easing.type: Easing.OutQuad}
-        }
-
-        PropertyAnimation {target: loader; property: "sourceComponent"; to: null; duration: 0; }
-
         onStarted: expanding.stop()
+        
+        PropertyAnimation {target: inner; property: "visible"; to: true; duration: 0; }
+        ParallelAnimation {
+            PropertyAnimation {target: inner; property: "implicitWidth"; to: normalWidth; from: expandedWidth; duration: 350; easing.type: Easing.OutQuad}
+            PropertyAnimation {target: root; property: "implicitWidth"; to: normalWidth; from: expandedWidth; duration: 350; easing.type: Easing.OutQuad}
+
+            PropertyAnimation {target: root; property: "implicitHeight"; to: normalHeight; from: expandedHeight; duration: 500; easing.type: Easing.InBack}
+        }
+        PropertyAnimation {target: loader; property: "sourceComponent"; to: null; duration: 0; }
     }
 
     Loader {
@@ -104,7 +101,7 @@ Item {
 
     Rectangle {
         id: inner
-        color: "#111111"
+        color: "#000000"
         radius: 9
         width: root.width
         height: root.height
@@ -143,11 +140,6 @@ Item {
                     color: "#111111"
                     radius: 15
                     anchors.fill: parent
-                    MouseArea {
-                        id: closeArea
-                        anchors.fill: parent
-                        onClicked: collapsing.start()
-                    }
 
                     HoverHandler {
                         id: hoverArea
@@ -163,7 +155,7 @@ Item {
                     Connections {
                         target: hoverArea
                         function onHoveredChanged() {
-                            if (expanding.running) {return;}
+                            if (expanding.running) { return; }
 
                             if (hoverArea.hovered) {
                                 allowClose = false;
@@ -172,7 +164,7 @@ Item {
                             }
 
                             allowClose = true;
-                            closeTimer.interval = 300;
+                            closeTimer.interval = 700;
                             closeTimer.start();
                         }
                     }
