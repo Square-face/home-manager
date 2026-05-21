@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }: let 
   inherit (config.lib.file) mkOutOfStoreSymlink;
 
-  symlinkRoot = "/home/sq8/.home/symlinks/";
+  symlinkRoot = "/home/sq8/.nix/home/symlinks/";
   toSrcFile = name: "${symlinkRoot}${name}";
   link = name: mkOutOfStoreSymlink (toSrcFile name);
 
