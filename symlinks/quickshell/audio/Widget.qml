@@ -19,9 +19,18 @@ RowLayout {
 
     Common.Slider {
         id: sinkSlider
+        property real volume: sink?.audio.volume ?? 0
+        property bool muted: sink?.audio.muted ?? false
 
-        value: sink?.audio.volume ?? 0
-        handleColor: (sink?.audio.muted ?? false) ? "#A0A0A0" : "#FFFFFF"
+        value: volume
+        handleColor: {
+            if (muted && volume<=1) {return "#A0A0A0"; }
+            if (muted && volume>1) {return "#FFA0A0"; }
+
+            if (!muted && volume<=1) {return "#FFFFFF"; }
+            if (!muted && volume>1) {return "#FF5050"; }
+            return "#FFFFFF"
+        }
         backgroundColor: "#222222"
 
         icon: {
