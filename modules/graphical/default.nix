@@ -7,7 +7,6 @@
         spice-gtk
 
         usbutils
-        spotifywm
 
         nemo-with-extensions
 
@@ -17,12 +16,12 @@
         vesktop
         fluffychat
         element-desktop
-        telegram-desktop
+        # telegram-desktop
         cinny-desktop
 
         jellyfin-desktop
         finamp
-        orca-slicer
+        # orca-slicer
 
         thunderbird
 

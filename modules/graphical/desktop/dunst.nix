@@ -34,15 +34,6 @@
                 foreground = "#cdd6f4";
                 highlight = "#89b4fa, #a6e3a1";
             };
-
-            # Filters are specified as sections
-            "filter" = {
-                appname = "Spotify";
-                min_icon_size = 64;
-                max_icon_size = 64;
-                urgency = "low";
-                history_ignore = true;
-            };
         };
     };
 }
