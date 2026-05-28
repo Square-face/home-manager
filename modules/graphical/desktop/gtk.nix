@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, config, ... }: {
     home.packages = with pkgs; [
 
         # Fonts
@@ -49,23 +49,17 @@
 
         iconTheme.name = "Papirus-Dark";
         iconTheme.package = pkgs.papirus-icon-theme;
+
+        gtk4.theme = config.gtk.theme;
+        gtk4.iconTheme = config.gtk.iconTheme;
+        gtk4.cursorTheme = config.gtk.cursorTheme;
+
+        gtk3.theme = config.gtk.theme;
+        gtk3.iconTheme = config.gtk.iconTheme;
+        gtk3.cursorTheme = config.gtk.cursorTheme;
+
+        gtk2.theme = config.gtk.theme;
+        gtk2.iconTheme = config.gtk.iconTheme;
+        gtk2.cursorTheme = config.gtk.cursorTheme;
     };
-
-
-    # home.file.".config/gtk-3.0/settings.ini".text = ''
-    #     [Settings]
-    #     gtk-theme-name=Catppuccin-GTK-Dark
-    #     gtk-icon-theme-name=Papirus-Dark
-    #     gtk-cursor-theme-name=Bibata-Modern-Classic
-    #     gtk-font-name=Sans 10
-    #     gtk-application-prefer-dark-theme=1
-    # '';
-    #
-    # home.file.".config/gtk-4.0/settings.ini".text = ''
-    #     [Settings]
-    #     gtk-theme-name=Catppuccin-GTK-Dark
-    #     gtk-icon-theme-name=Papirus-Dark
-    #     gtk-cursor-theme-name=Bibata-Modern-Classic
-    #     gtk-application-prefer-dark-theme=1
-    # '';
 }
