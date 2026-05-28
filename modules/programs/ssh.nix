@@ -35,7 +35,7 @@
         };
         "frank" = {
             hostname = "10.2.2.1";
-            port = 22;
+            forwardAgent = true;
             remoteForwards = [{
                 host.address = "/run/user/1000/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent.extra";
                 bind.address = "/run/user/1001/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent";
