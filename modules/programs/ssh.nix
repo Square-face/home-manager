@@ -35,7 +35,7 @@
             Hostname = "10.2.2.1";
             ForwardAgent = true;
             RemoteForward = {
-                host.address = "/run/user/1000/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent.extra";
+                host.address = "/run/user/1000/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent";
                 bind.address = "/run/user/1001/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent";
             };
         };
@@ -43,6 +43,10 @@
             Hostname = "10.2.100.1";
             User = "sq8";
             ForwardAgent = true;
+            RemoteForward = {
+                host.address = "/run/user/1000/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent";
+                bind.address = "/run/user/1001/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent";
+            };
         };
     };
 
