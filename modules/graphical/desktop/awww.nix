@@ -1,6 +1,6 @@
-{pkgs, awww, ...}: {
+{pkgs, ...}: {
   home.packages = [
-    awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
+    pkgs.awww
   ];
   systemd.user.services.awww = {
     Unit = {
@@ -14,7 +14,7 @@
     };
     Service = {
       Type = "simple";
-      ExecStart = "${awww.packages.${pkgs.stdenv.hostPlatform.system}.awww}/bin/awww-daemon -f argb";
+      ExecStart = "${pkgs.awww}/bin/awww-daemon -f argb";
       Restart = "on-failure";
     };
   };

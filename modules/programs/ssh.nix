@@ -10,42 +10,39 @@
       GSSAPIDelegateCredentials yes
     '';
 
-    programs.ssh.matchBlocks = {
+    programs.ssh.settings = {
         "*" = {
-            forwardAgent = false;
-            addKeysToAgent = "no";
-            compression = false;
-            serverAliveInterval = 0;
-            serverAliveCountMax = 3;
-            hashKnownHosts = false;
-            userKnownHostsFile = "~/.ssh/known_hosts";
-            controlMaster = "no";
-            controlPath = "~/.ssh/master-%r@%n:%p";
-            controlPersist = "no";
+            ForwardAgent = false;
+            AddKeysToAgent = "no";
+            Compression = false;
+            ServerAliveInterval = 0;
+            ServerAliveCountMax = 3;
+            HashKnownHosts = false;
+            UserKnownHostsFile = "~/.ssh/known_hosts";
+            ControlMaster = "no";
+            ControlPath = "~/.ssh/master-%r@%n:%p";
+            ControlPersist = "no";
         };
         "markus" = {
-            hostname = "10.2.0.1";
-            user = "root";
-            port = 22;
+            Hostname = "10.2.0.1";
+            User = "root";
         };
         "shitbix" = {
-            hostname = "10.2.1.1";
-            user = "root";
-            port = 22;
+            Hostname = "10.2.1.1";
+            User = "root";
         };
         "frank" = {
-            hostname = "10.2.2.1";
-            forwardAgent = true;
-            remoteForwards = [{
+            Hostname = "10.2.2.1";
+            ForwardAgent = true;
+            RemoteForward = {
                 host.address = "/run/user/1000/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent.extra";
                 bind.address = "/run/user/1001/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent";
-            }];
+            };
         };
         "shrexbox" = {
-            hostname = "10.2.100.1";
-            user = "sq8";
-            port = 22;
-            forwardAgent = true;
+            Hostname = "10.2.100.1";
+            User = "sq8";
+            ForwardAgent = true;
         };
     };
 
