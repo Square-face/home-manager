@@ -45,7 +45,7 @@
             ForwardAgent = true;
             RemoteForward = {
                 host.address = "/run/user/1000/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent";
-                bind.address = "/run/user/1001/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent";
+                bind.address = "/run/user/1000/gnupg/d.mxiqgwmcfurywf15ry8o1gfm/S.gpg-agent";
             };
         };
     };
