@@ -1,4 +1,5 @@
-{pkgs, config, ...}: {
+{ pkgs, config, ... }:
+{
   home.file."${config.xdg.configHome}/kanshi/config".text = ''
     include "${config.xdg.configHome}/kanshi/config.d/*"
   '';

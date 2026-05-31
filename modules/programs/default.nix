@@ -1,31 +1,34 @@
-{pkgs, lib, ...}: {
+{ pkgs, lib, ... }:
+{
 
-    home.packages = with pkgs; [
-        xdg-utils
+  home.packages = with pkgs; [
+    xdg-utils
 
-        fd
-        file
-        ripgrep
+    fd
+    file
+    ripgrep
 
-        fastfetch
-        btop
-        dust
-        wget
-        nmap
-        dig
+    fastfetch
+    btop
+    dust
+    wget
+    nmap
+    dig
 
-        libqalculate
-    ];
+    libqalculate
+  ];
 
-    imports = [
-        ./neovim.nix
-        ./ssh.nix
-        ./zsh.nix
-        ./git.nix
-    ];
+  imports = [
+    ./neovim.nix
+    ./ssh.nix
+    ./zsh.nix
+    ./git.nix
+  ];
 
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-        "steam"
-        "steam-unwrapped"
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "steam"
+      "steam-unwrapped"
     ];
 }

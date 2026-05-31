@@ -1,32 +1,38 @@
-{lib, pkgs, config, ...}: {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+{
   options.graphical.enable = lib.mkEnableOption "Enable graphical modules";
 
   config = lib.mkIf config.graphical.enable {
     home.packages = with pkgs; [
-        virt-manager
-        spice-gtk
+      virt-manager
+      spice-gtk
 
-        usbutils
+      usbutils
 
-        nemo-with-extensions
+      nemo-with-extensions
 
-        evince
-        rnote
+      evince
+      rnote
 
-        vesktop
-        fluffychat
-        element-desktop
-        # telegram-desktop
-        cinny-desktop
+      vesktop
+      fluffychat
+      element-desktop
+      # telegram-desktop
+      cinny-desktop
 
-        jellyfin-desktop
-        finamp
-        # orca-slicer
+      jellyfin-desktop
+      finamp
+      # orca-slicer
 
-        thunderbird
+      thunderbird
 
-        feh
-        mpv
+      feh
+      mpv
     ];
   };
 }

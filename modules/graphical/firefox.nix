@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options.firefox.enable = lib.mkEnableOption "Enable firefox";
   config = lib.mkIf (config.firefox.enable && config.graphical.enable) {
     programs.firefox.enable = true;
@@ -18,11 +24,11 @@
       };
 
       # Imagine having a imperative browser
-      AppAutoUpdate = false; 
-      BackgroundAppUpdate = false; 
+      AppAutoUpdate = false;
+      BackgroundAppUpdate = false;
 
       # Attention whore
-      DontCheckDefaultBrowser = true; 
+      DontCheckDefaultBrowser = true;
       UserMessaging = {
         ExtensionRecommendations = false;
         FeatureRecommendations = false;
@@ -34,12 +40,12 @@
       };
 
       DisableFirefoxStudies = true;
-      DisableFirefoxAccounts = true; 
-      DisableFirefoxScreenshots = true; 
-      DisableMasterPasswordCreation = true; 
-      DisableProfileImport = true; 
-      DisableProfileRefresh = true; 
-      DisableSetDesktopBackground = true; 
+      DisableFirefoxAccounts = true;
+      DisableFirefoxScreenshots = true;
+      DisableMasterPasswordCreation = true;
+      DisableProfileImport = true;
+      DisableProfileRefresh = true;
+      DisableSetDesktopBackground = true;
       DisplayMenuBar = "default-off";
       DisablePocket = true;
       DisableTelemetry = true;
@@ -50,14 +56,14 @@
       # Declutter
       ShowHomeButton = false;
       NoDefaultBookmarks = true;
-      DisableForgetButton = true; 
+      DisableForgetButton = true;
 
       # Bitwarden does it better
-      OfferToSaveLogins = false; 
+      OfferToSaveLogins = false;
       PasswordManagerEnabled = false; # Managed by KeepAss
 
       # just use evince bro
-      DisableBuiltinPDFViewer = true; 
+      DisableBuiltinPDFViewer = true;
       PDFjs = {
         Enabled = false;
         EnablePermissions = false;

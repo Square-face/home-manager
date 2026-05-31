@@ -1,4 +1,10 @@
-{ pkgs, config, lib, ... }: let 
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 
   symlinkRoot = "/home/sq8/.nix/home/symlinks/";
@@ -6,10 +12,21 @@
   link = name: mkOutOfStoreSymlink (toSrcFile name);
 
   linkFile = name: { "${name}".source = link name; };
-  linkDir  = name: { "${name}" = { source = link name; recursive = true; }; };
-in {
+  linkDir = name: {
+    "${name}" = {
+      source = link name;
+      recursive = true;
+    };
+  };
+in
+{
   _module.args = {
-    inherit link linkFile linkDir symlinkRoot;
+    inherit
+      link
+      linkFile
+      linkDir
+      symlinkRoot
+      ;
   };
 
   home.username = "sq8";

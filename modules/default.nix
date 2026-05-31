@@ -1,13 +1,14 @@
-{...}: {
-    imports = [
-        ./graphical/default.nix
-        ./graphical/firefox.nix
-        ./graphical/alacritty.nix
-        
-        ./graphical/desktop/default.nix
+{ ... }:
+{
+  imports = [
+    ./graphical/default.nix
+    ./graphical/firefox.nix
+    ./graphical/alacritty.nix
 
-        ./programs/default.nix
+    ./graphical/desktop/default.nix
 
-        ./services/udiskie.nix
-    ];
+    ./programs/default.nix
+
+    ./services/udiskie.nix
+  ];
 }

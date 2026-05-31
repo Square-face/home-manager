@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   xdg = {
     configHome = "/home/sq8/.config";
     enable = true;
@@ -10,7 +11,11 @@
     portal = {
       enable = true;
       xdgOpenUsePortal = true;
-      config.niri.default = [ "gnome" "gtk" "wlr" ];
+      config.niri.default = [
+        "gnome"
+        "gtk"
+        "wlr"
+      ];
       config.niri = {
         "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
         "org.freedesktop.impl.portal.Screenshot" = [ "gtk" ];
