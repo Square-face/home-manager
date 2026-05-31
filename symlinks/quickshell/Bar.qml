@@ -1,6 +1,7 @@
 import Quickshell
 import Quickshell.Services.Pipewire
 import "audio" as Audio
+import "networking" as Network
 import "common" as Common
 
 Scope {
@@ -33,12 +34,12 @@ Scope {
                 ClockWidget { }
             }
 
-            Common.Island {
+            Network.Island {
                 id: networking
                 anchors.top: parent.top
                 anchors.right: audio.left
                 anchors.rightMargin: 2
-                NetworkWidget {}
+                // NetworkWidget {}
             }
 
             Audio.Island {
