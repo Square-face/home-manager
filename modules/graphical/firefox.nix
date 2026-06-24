@@ -60,7 +60,7 @@
 
       # Bitwarden does it better
       OfferToSaveLogins = false;
-      PasswordManagerEnabled = false; # Managed by KeepAss
+      PasswordManagerEnabled = false;
 
       # just use evince bro
       DisableBuiltinPDFViewer = true;
@@ -77,7 +77,7 @@
           blocked_install_message = "Nuh Uh";
         };
         "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/file/4493940/bitwarden_password_manager-2025.12.1.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4842111/bitwarden_password_manager-2026.5.1.xpi";
           installation_mode = "force_installed";
         };
         "uBlock0@raymondhill.net" = {
