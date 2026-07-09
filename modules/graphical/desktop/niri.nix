@@ -30,7 +30,7 @@
     };
     Service = {
       Type = "simple";
-      ExecStart = "${pkgs.iio-niri}/bin/iio-niri --monitor eDP-1";
+      ExecStart = "${pkgs.iio-niri}/bin/iio-niri listen --monitor eDP-1";
       Restart = "on-failure";
     };
   };
