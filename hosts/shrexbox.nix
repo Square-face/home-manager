@@ -56,6 +56,9 @@ in
 
   udiskie.enable = true;
 
+  age.secrets.syncthing-key.file = ../secrets/shrexbox/syncthing-key.age;
+  age.secrets.syncthing-cert.file = ../secrets/shrexbox/syncthing-cert.age;
+
   # Optional: Set Home Manager state version (prevents breakage on updates)
   home.stateVersion = "24.11";
 }

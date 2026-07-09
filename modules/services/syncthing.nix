@@ -44,5 +44,13 @@
         "shrexbox"
       ];
     };
+    "~/Pictures" = {
+      label = "Pictures";
+      id = "pictures";
+      devices = [
+        "flappy"
+        "shrexbox"
+      ];
+    };
   };
 }
