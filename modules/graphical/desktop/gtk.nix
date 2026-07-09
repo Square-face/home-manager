@@ -35,6 +35,8 @@
   home.pointerCursor = {
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
+    enable = true;
+    gtk.enable = true;
   };
 
   gtk = {
