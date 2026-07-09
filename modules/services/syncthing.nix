@@ -24,41 +24,43 @@
         "quic://10.2.100.4"
       ];
     };
+    frank = {
+      id = "XQP7GCA-HAGDVRX-ZPJ3FTW-4GZUGOH-ZLQI3TJ-YL2HTK5-ORKHQB2-VQEXWQU";
+      name = "Frank";
+      addresses = [
+        "quic://10.0.0.1"
+        "quic://10.2.2.1"
+      ];
+    };
   };
 
   services.syncthing.overrideFolders = true;
-  services.syncthing.settings.folders = {
+  services.syncthing.settings.folders = let
+    devices = [
+      "frank"
+      "flappy"
+      "shrexbox"
+    ];
+  in {
     "~/Desktop" = {
       label = "Desktop";
       id = "desktop";
-      devices = [
-        "flappy"
-        "shrexbox"
-      ];
+      inherit devices;
     };
     "~/Documents" = {
       label = "Documents";
       id = "documents";
-      devices = [
-        "flappy"
-        "shrexbox"
-      ];
+      inherit devices;
     };
     "~/Pictures" = {
       label = "Pictures";
       id = "pictures";
-      devices = [
-        "flappy"
-        "shrexbox"
-      ];
+      inherit devices;
     };
     "~/Music" = {
       label = "Music";
       id = "music";
-      devices = [
-        "flappy"
-        "shrexbox"
-      ];
+      inherit devices;
     };
   };
 }

@@ -55,6 +55,9 @@ in
 
   udiskie.enable = true;
 
+  age.secrets.syncthing-key.file = ../secrets/frank/syncthing-key.age;
+  age.secrets.syncthing-cert.file = ../secrets/frank/syncthing-cert.age;
+
   # Optional: Set Home Manager state version (prevents breakage on updates)
   home.stateVersion = "24.11";
 }
