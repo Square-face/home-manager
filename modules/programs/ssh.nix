@@ -6,9 +6,13 @@
     CanonicalizeHostname yes
     CanonicalDomains dh3.ludd.ltu.se t1.ludd.ltu.se ludd.ltu.se
 
-    Host *.ltu.se
+    Host *.dh3.ludd.ltu.se
       GSSAPIAuthentication yes
       GSSAPIDelegateCredentials yes
+
+    Match Host *dh3.ludd.ltu.se User siteops
+      IdentityFile ~/.ssh/id_rsa
+      CertificateFile ~/.ssh/id_rsa-cert.pub
   '';
 
   programs.ssh.settings = {
