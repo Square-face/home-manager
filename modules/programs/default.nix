@@ -17,7 +17,6 @@
 
     libqalculate
   ];
-
   imports = [
     ./neovim.nix
     ./ssh.nix
