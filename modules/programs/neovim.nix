@@ -10,6 +10,7 @@ let
     lua
     nix
     zsh
+    terraform
   ];
 
   rtdir = lib.mkAfter (builtins.concatStringsSep "\n" (builtins.map (g: "vim.o.runtimepath = vim.o.runtimepath .. ',${g}'") grammars));
