@@ -52,5 +52,13 @@
         "shrexbox"
       ];
     };
+    "~/Music" = {
+      label = "Music";
+      id = "music";
+      devices = [
+        "flappy"
+        "shrexbox"
+      ];
+    };
   };
 }
