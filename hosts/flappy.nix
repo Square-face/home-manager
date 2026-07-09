@@ -36,6 +36,7 @@ in
   home.sessionVariables = {
     RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
     CARGO_HOME = "${config.xdg.dataHome}/cargo";
+    CARGO_TARGET_DIR = "${config.xdg.cacheHome}/cargo-target";
     DOCKER_CONFIG = "${config.xdg.configHome}/docker";
     WINEPREFIX = "${config.xdg.dataHome}/wineprefixes";
   };
@@ -55,6 +56,9 @@ in
   gpg.enable = true;
 
   udiskie.enable = true;
+
+  age.secrets.syncthing-key.file = ../secrets/flappy/syncthing-key.age;
+  age.secrets.syncthing-cert.file = ../secrets/flappy/syncthing-cert.age;
 
   # Optional: Set Home Manager state version (prevents breakage on updates)
   home.stateVersion = "24.11";

@@ -9,6 +9,9 @@
 
     quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
     quickshell.inputs.nixpkgs.follows = "nixpkgs";
+
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -16,6 +19,7 @@
       nixpkgs,
       home-manager,
       quickshell,
+      agenix,
       ...
     }:
     let
@@ -31,6 +35,7 @@
         modules = [
           ./modules/default.nix
           ./hosts/flappy.nix
+          agenix.homeManagerModules.default
         ];
       };
 
@@ -39,6 +44,7 @@
         modules = [
           ./modules/default.nix
           ./hosts/shrexbox.nix
+          agenix.homeManagerModules.default
         ];
       };
 
@@ -47,6 +53,7 @@
         modules = [
           ./modules/default.nix
           ./hosts/frank.nix
+          agenix.homeManagerModules.default
         ];
       };
     };
