@@ -19,6 +19,7 @@
       evince
       rnote
 
+      anki
       vesktop
       fluffychat
       element-desktop
