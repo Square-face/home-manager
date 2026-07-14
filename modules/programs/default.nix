@@ -14,6 +14,7 @@
     wget
     nmap
     dig
+    pass
 
     libqalculate
   ];

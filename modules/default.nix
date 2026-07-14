@@ -10,6 +10,7 @@
     ./programs/default.nix
 
     ./services/udiskie.nix
+    ./services/pass.nix
     ./services/syncthing.nix
   ];
 }
