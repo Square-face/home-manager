@@ -86,6 +86,7 @@
                 set -g status-left ""
                 set -g status-right "#{E:#H}"
                 set -ag status-right "#{E:@catppuccin_status_uptime}"
+                set -g history-limit 100000
               '';
             }
           ];
